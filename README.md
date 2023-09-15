@@ -16,9 +16,11 @@ For some, it's just a preferred interface, but for others there are specific fun
 
 1. Download the zip file using the link above.
 2. Extract **OldExplorer.exe**.
-3. Optionally move **OldExplorer.exe** to the folder of your choice.
+3. Right-click**OldExplorer.exe**, select Properties, check Unblock, and click OK.
+4. Optionally move **OldExplorer.exe** to the folder of your choice.
 5. Double-click **OldExplorer.exe** to open the Windows 10 Explorer to **This PC**.
-6. Optionally make a shortcut to **OldExplorer.exe** and edit the command line to open the old Explorer to the folder of your choice. You may use environment variables and spaces are supported, as long as the path is in quotes.
+6. If you skipped step 3, then, in the SmartScreen window, click More info and then Run anyway.
+7. Optionally make a shortcut to **OldExplorer.exe** and edit the command line to open the old Explorer to the folder of your choice. You may use environment variables and spaces are supported, as long as the path is in quotes.
 
 **Note**: Some antivirus software may falsely detect the download as a virus. This can happen anytime you download a new executable and may require extra steps to whitelist the file.
 
