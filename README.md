@@ -6,7 +6,7 @@
 
 The Windows 10 Explorer can be accessed on Windows 11 by opening the Control Panel and then clicking the up arrow a couple of times. **OldExplorer** is simply a launcher that does essentially the same thing, but also lets you provide your preferred starting folder. It actually runs the command **control admintools** and then, by default, sends **This PC** to the navigation bar. If you specify a different folder on the OldExplorer command line, it will navigate there instead.
 
-The goal of this project was to improve on similar PowerShell based solutions with a faster launch, no console window, easy change of the starting folder, use the Explorer icon, and not interfere with an existing open Control Panel window.
+The goal of this project is to improve on similar PowerShell based solutions with a faster launch, no console window, easy change of the starting folder, use the Explorer icon, and not interfere with an existing open Control Panel window.
 
 ## Why run the Windows 10 Explorer on Windows 11?
 
