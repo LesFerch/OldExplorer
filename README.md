@@ -16,7 +16,7 @@ For some, it's just a preferred interface, but for others there are specific fun
 
 1. Download the zip file using the link above.
 2. Extract **OldExplorer.exe**.
-3. Right-click**OldExplorer.exe**, select Properties, check Unblock, and click OK.
+3. Right-click **OldExplorer.exe**, select Properties, check Unblock, and click OK.
 4. Optionally move **OldExplorer.exe** to the folder of your choice.
 5. Double-click **OldExplorer.exe** to open the Windows 10 Explorer to **This PC**.
 6. If you skipped step 3, then, in the SmartScreen window, click More info and then Run anyway.
