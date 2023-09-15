@@ -26,7 +26,7 @@ For some, it's just a preferred interface, but for others there are specific fun
 
 # Summary
 
-**OldExplorer** launches the Windows 10 Explorer on Wndows 11 by executing the command **control admintools** and then sends the  starting folder (**This PC** by default) to the navigation bar.
+**OldExplorer** launches the Windows 10 Explorer on Windows 11 by executing the command **control admintools** and then sends the  starting folder (**This PC** by default) to the navigation bar.
 
 **Note**: OldExplorer.exe is only useful on Windows 11. It will run on Windows 10, but it is pointless to do that.
 
