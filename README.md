@@ -4,7 +4,7 @@
 
 ## Launch Windows 10 Explorer on Windows 11
 
-The Windows 10 Explorer can be accessed on Windows 11 by opening the Control Panel and then clicking the up arrow a couple of times. **OldExplorer** is simply a launcher that does essentially the same thing, but also lets you provide your preferred starting folder. It actually runs the command **control admintools** and then, by default, sends **This PC** to the navigation bar. If you specify a different folder on the OldExplorer command line, it will navigate there instead.
+The Windows 10 Explorer can be accessed on Windows 11 by opening the Control Panel and then clicking the up arrow a couple of times. **OldExplorer** is simply a launcher that does essentially the same thing, but also lets you provide your preferred starting folder. It actually runs the command **control admintools** and then, by default, sends **C:** to the navigation bar. If you specify a different folder on the OldExplorer command line, it will navigate there instead.
 
 The goal of this project is to improve on similar PowerShell based solutions with a faster launch, no console window, easy change of the starting folder, use the Explorer icon, and not interfere with an existing open Control Panel window.
 
@@ -18,7 +18,7 @@ For some, it's just a preferred interface, but for others there are specific fun
 2. Extract **OldExplorer.exe**.
 3. Right-click **OldExplorer.exe**, select Properties, check Unblock, and click OK.
 4. Optionally move **OldExplorer.exe** to the folder of your choice.
-5. Double-click **OldExplorer.exe** to open the Windows 10 Explorer to **This PC**.
+5. Double-click **OldExplorer.exe** to open the Windows 10 Explorer to **C:**.
 6. If you skipped step 3, then, in the SmartScreen window, click More info and then Run anyway.
 7. Optionally make a shortcut to **OldExplorer.exe** and edit the command line to open the old Explorer to the folder of your choice. You may use environment variables and spaces are supported, as long as the path is in quotes.
 
@@ -26,7 +26,7 @@ For some, it's just a preferred interface, but for others there are specific fun
 
 # Summary
 
-**OldExplorer** launches the Windows 10 Explorer on Windows 11 by executing the command **control admintools** and then sends the  starting folder (**This PC** by default) to the navigation bar.
+**OldExplorer** launches the Windows 10 Explorer on Windows 11 by executing the command **control admintools** and then sends the  starting folder (**C:** by default) to the navigation bar.
 
 **Note**: OldExplorer.exe is only useful on Windows 11. It will run on Windows 10, but it is pointless to do that.
 
@@ -35,12 +35,12 @@ For some, it's just a preferred interface, but for others there are specific fun
 **Note**: Typically you would make a shortcut to OldExplorer.exe and then edit the command line of the shortcut, if you want to start in a folder other than **This PC**.
 
 **Example 1**:\
-Launch the Windows 10 Explorer to **This PC**:\
+Launch the Windows 10 Explorer to **C:**:\
 `OldExplorer`
 
 **Example 2**:\
-Launch the Windows 10 Explorer to **C:\\**:\
-`OldExplorer C:\`
+Launch the Windows 10 Explorer to **D:**:\
+`OldExplorer D:`
 
 **Example 3**:\
 Launch the Windows 10 Explorer to **%UserProfile%\Documents**:\
@@ -48,7 +48,7 @@ Launch the Windows 10 Explorer to **%UserProfile%\Documents**:\
 
 **Example 4**:\
 Launch the Windows 10 Explorer to **C:\Program Files**:\
-`OldExplorer "C:\Program Files"`
+`OldExplorer "This PC"`
 
 \
 \
