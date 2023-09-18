@@ -9,7 +9,7 @@ class Program
 {
     static void Main(string[] args)
     {
-        string Folder = "shell:MyComputerFolder";
+        string Folder = "C:";
         int Attempts = 20;
 
         if (args.Length > 0)
