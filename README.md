@@ -18,7 +18,7 @@ For some, it's just a preferred interface, but for others there are specific fun
 2. Extract **OldExplorer.exe**.
 3. Right-click **OldExplorer.exe**, select Properties, check Unblock, and click OK.
 4. Optionally move **OldExplorer.exe** to the folder of your choice.
-5. Double-click **OldExplorer.exe** to open the Windows 10 Explorer to **C:**.
+5. Double-click **OldExplorer.exe** to open the Windows 10 Explorer to **C:**
 6. If you skipped step 3, then, in the SmartScreen window, click More info and then Run anyway.
 7. Optionally make a shortcut to **OldExplorer.exe** and edit the command line to open the old Explorer to the folder of your choice. You may use environment variables and spaces are supported, as long as the path is in quotes.
 
@@ -35,11 +35,11 @@ For some, it's just a preferred interface, but for others there are specific fun
 **Note**: Typically you would make a shortcut to OldExplorer.exe and then edit the command line of the shortcut, if you want to start in a folder other than **This PC**.
 
 **Example 1**:\
-Launch the Windows 10 Explorer to **C:**:\
+Launch the Windows 10 Explorer to **C:**\
 `OldExplorer`
 
 **Example 2**:\
-Launch the Windows 10 Explorer to **D:**:\
+Launch the Windows 10 Explorer to **D:**\
 `OldExplorer D:`
 
 **Example 3**:\
