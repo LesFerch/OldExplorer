@@ -47,7 +47,7 @@ Launch the Windows 10 Explorer to **%UserProfile%\Documents**:\
 `OldExplorer %UserProfile%\Documents`
 
 **Example 4**:\
-Launch the Windows 10 Explorer to **C:\Program Files**:\
+Launch the Windows 10 Explorer to **This PC**:\
 `OldExplorer "This PC"`
 
 \
