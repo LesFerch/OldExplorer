@@ -9,7 +9,7 @@ class Program
 {
     static void Main(string[] args)
     {
-        string Folder = "This PC";
+        string Folder = "shell:MyComputerFolder";
         int Attempts = 20;
 
         if (args.Length > 0)
@@ -79,28 +79,28 @@ class Program
             if (adminToolsWindow != null)
             {
                 SetForegroundWindow((IntPtr)adminToolsWindow.Current.NativeWindowHandle);
-                SendKeys.SendWait("%{d}" + Folder + "{Enter}");
+                SendKeys.SendWait("^{l}" + Folder + "{Enter}");
                 break;
             }
 
             if (adminToolsWindowFP != null)
             {
                 SetForegroundWindow((IntPtr)adminToolsWindowFP.Current.NativeWindowHandle);
-                SendKeys.SendWait("%{d}" + Folder + "{Enter}");
+                SendKeys.SendWait("^{l}" + Folder + "{Enter}");
                 break;
             }
 
             if (windowsToolsWindow != null)
             {
                 SetForegroundWindow((IntPtr)windowsToolsWindow.Current.NativeWindowHandle);
-                SendKeys.SendWait("%{d}" + Folder + "{Enter}");
+                SendKeys.SendWait("^{l}" + Folder + "{Enter}");
                 break;
             }
 
             if (windowsToolsWindowFP != null)
             {
                 SetForegroundWindow((IntPtr)windowsToolsWindowFP.Current.NativeWindowHandle);
-                SendKeys.SendWait("%{d}" + Folder + "{Enter}");
+                SendKeys.SendWait("^{l}" + Folder + "{Enter}");
                 break;
             }
         }
