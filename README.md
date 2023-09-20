@@ -34,7 +34,7 @@ Another reason is to get better performance, especially with folders that contai
 
 ## Usage examples
 
-**Note**: Typically you would make a shortcut to OldExplorer.exe and then edit the command line of the shortcut, if you want to start in a folder other than **This PC**.
+**Note**: Typically you would make a shortcut to OldExplorer.exe and then edit the command line of the shortcut, if you want to start in a folder other than **C:**.
 
 **Example 1**:\
 Launch the Windows 10 Explorer to **C:**\
