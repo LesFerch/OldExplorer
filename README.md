@@ -12,6 +12,8 @@ The goal of this project is to improve on similar PowerShell based solutions wit
 
 For some, it's just a preferred interface, but for others there are specific functional reasons, such as using offline files and folders or being able to set the folder type for an entire folder tree.
 
+Another reason is to get better performance, especially with folders that contain a lot of media files.
+
 # How to Download and Run
 
 1. Download the zip file using the link above.
