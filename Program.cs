@@ -9,17 +9,15 @@ class Program
 {
     static void Main(string[] args)
     {
-        string Folder = "C:";
+        string folder = "C:";
         int Attempts = 20;
 
         if (args.Length > 0)
         {
-            Folder = args[0];
-
-            // Fix issue where argument is quoted and ends with backslash
-            if (Folder.EndsWith("\""))
+            folder = args[0];
+            if (folder.EndsWith("\""))
             {
-                Folder = Folder.Remove(Folder.Length - 1) + "\\";
+                folder = folder.Remove(folder.Length - 1) + "\\";
             }
         }
 
@@ -40,71 +38,40 @@ class Program
 
         process.Start();
 
-        // Wait for the Administrative Tools or Windows Tools window to appear
-        // Check for both short name and full path name
-
-        AutomationElement adminToolsWindow = null;
-        AutomationElement adminToolsWindowFP = null;
-        AutomationElement windowsToolsWindow = null;
-        AutomationElement windowsToolsWindowFP = null;
-
-        // Check for window up to number of times specified by Attempts variable
-        // A for loop avoids the possibility of an infinite loop
+        AutomationElement FoundWindow = null;
+        string[] WinList = new[]
+        {
+            "Administrative Tools",
+            "Control Panel\\All Control Panel Items\\Administrative Tools",
+            "Windows Tools",
+            "Control Panel\\All Control Panel Items\\Windows Tools"
+        };
 
         for (int i = 0; i < Attempts; i++)
         {
-
-            Thread.Sleep(500);
-
-            adminToolsWindow = AutomationElement.RootElement.FindFirst(
-                TreeScope.Children,
-                new PropertyCondition(AutomationElement.NameProperty, "Administrative Tools")
-            );
-
-            adminToolsWindowFP = AutomationElement.RootElement.FindFirst(
-                TreeScope.Children,
-                new PropertyCondition(AutomationElement.NameProperty, "Control Panel\\All Control Panel Items\\Administrative Tools")
-            );
-
-            windowsToolsWindow = AutomationElement.RootElement.FindFirst(
-                TreeScope.Children,
-                new PropertyCondition(AutomationElement.NameProperty, "Windows Tools")
-            );
-
-            windowsToolsWindowFP = AutomationElement.RootElement.FindFirst(
-                TreeScope.Children,
-                new PropertyCondition(AutomationElement.NameProperty, "Control Panel\\All Control Panel Items\\Windows Tools")
-            );
-
-            if (adminToolsWindow != null)
+            for (int j = 0; j < WinList.Length; j++)
             {
-                SetForegroundWindow((IntPtr)adminToolsWindow.Current.NativeWindowHandle);
-                SendKeys.SendWait("^{l}" + Folder + "{Enter}");
-                break;
-            }
+                FoundWindow = FindWindowByName(WinList[j]);
 
-            if (adminToolsWindowFP != null)
-            {
-                SetForegroundWindow((IntPtr)adminToolsWindowFP.Current.NativeWindowHandle);
-                SendKeys.SendWait("^{l}" + Folder + "{Enter}");
-                break;
+                if (FoundWindow != null)
+                {
+                    SetForegroundWindow((IntPtr)FoundWindow.Current.NativeWindowHandle);
+                    SendKeys.SendWait("^{l}" + folder + "{Enter}");
+                    break;
+                }
             }
-
-            if (windowsToolsWindow != null)
-            {
-                SetForegroundWindow((IntPtr)windowsToolsWindow.Current.NativeWindowHandle);
-                SendKeys.SendWait("^{l}" + Folder + "{Enter}");
-                break;
-            }
-
-            if (windowsToolsWindowFP != null)
-            {
-                SetForegroundWindow((IntPtr)windowsToolsWindowFP.Current.NativeWindowHandle);
-                SendKeys.SendWait("^{l}" + Folder + "{Enter}");
-                break;
-            }
+            if (FoundWindow != null) { break; }
+            Thread.Sleep(100);
         }
     }
+    private static AutomationElement FindWindowByName(string name)
+    {
+        return AutomationElement.RootElement.FindFirst(
+            TreeScope.Children,
+            new PropertyCondition(AutomationElement.NameProperty, name)
+        );
+    }
+
     [DllImport("user32.dll")]
     private static extern bool SetForegroundWindow(IntPtr hWnd);
 }
