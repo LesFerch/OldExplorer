@@ -7,6 +7,7 @@ using System.Windows.Forms;
 
 class Program
 {
+    [STAThread]
     static void Main(string[] args)
     {
         string folder = "C:";
@@ -55,8 +56,10 @@ class Program
 
                 if (FoundWindow != null)
                 {
+                    Clipboard.SetText(folder);
                     SetForegroundWindow((IntPtr)FoundWindow.Current.NativeWindowHandle);
-                    SendKeys.SendWait("^{l}" + folder + "{Enter}");
+                    SendKeys.SendWait("^{l}^{v}{Enter}");
+                    Clipboard.Clear();
                     break;
                 }
             }
