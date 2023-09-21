@@ -34,7 +34,7 @@ Another reason is to get better performance, especially with folders that contai
 
 ## Usage examples
 
-**Note**: Typically you would make a shortcut to OldExplorer.exe and then edit the command line of the shortcut, if you want to start in a folder other than **C:**.
+**Note**: Typically you would make a shortcut to OldExplorer.exe and then edit the command line of the shortcut, if you want to start in a folder other than **C:**
 
 **Note**: By Default, OldExplorer uses the clipboard for any path specified on the command line that is greater than 3 characters in length. This allows the path to be entered into the address bar very fast at the expense of overwriting whatever is currently on the clipboard. You can tell OldExplorer to not use the clipboard by specifying /x on the command line.
 
