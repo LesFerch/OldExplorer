@@ -1,25 +1,29 @@
 ﻿using System;
 using System.Diagnostics;
+using System.IO;
 using System.Runtime.InteropServices;
 using System.Threading;
 using System.Windows.Automation;
 using System.Windows.Forms;
+using Microsoft.Win32;
 
 class Program
 {
     [STAThread]
     static void Main(string[] args)
     {
-        string folder = "C:";
         int Attempts = 20;
+        string Folder = "C:";
+        bool Clip = true;
 
-        if (args.Length > 0)
+        for (int i = 0; i < args.Length; i++)
         {
-            folder = args[0];
-            if (folder.EndsWith("\""))
-            {
-                folder = folder.Remove(folder.Length - 1) + "\\";
-            }
+            if (args[i].ToLower() == "/x") { Clip = false; }
+            else { Folder = args[i]; }
+        }
+        if (Folder.EndsWith("\""))
+        {
+            Folder = Folder.Remove(Folder.Length - 1) + "\\";
         }
 
         ProcessStartInfo startInfo = new ProcessStartInfo
@@ -56,10 +60,17 @@ class Program
 
                 if (FoundWindow != null)
                 {
-                    Clipboard.SetText(folder);
                     SetForegroundWindow((IntPtr)FoundWindow.Current.NativeWindowHandle);
-                    SendKeys.SendWait("^{l}^{v}{Enter}");
-                    Clipboard.Clear();
+                    Thread.Sleep(200);
+                    if (Clip && (Folder.Length > 3))
+                    {
+                        Clipboard.SetText(Folder);
+                        SendKeys.SendWait("^{l}^{v}{Enter}");
+                    }
+                    else
+                    {
+                        SendKeys.SendWait("^{l}" + Folder + "{Enter}");
+                    }
                     break;
                 }
             }
