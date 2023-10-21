@@ -1,12 +1,14 @@
 # OldExplorer
 
-[![image](https://user-images.githubusercontent.com/79026235/152910441-59ba653c-5607-4f59-90c0-bc2851bf2688.png)Download the zip file](https://github.com/LesFerch/OldExplorer/releases/download/1.1.0/OldExplorer.zip)
+[![image](https://user-images.githubusercontent.com/79026235/152910441-59ba653c-5607-4f59-90c0-bc2851bf2688.png)Download the zip file](https://github.com/LesFerch/OldExplorer/releases/download/1.0.4/OldExplorer.zip)
 
 ## Launch Windows 10 Explorer on Windows 11
 
 The Windows 10 Explorer can be accessed on Windows 11 by opening the Control Panel and then clicking the up arrow a couple of times. **OldExplorer** is simply a launcher that does essentially the same thing, but also lets you provide your preferred starting folder. It actually runs the command **control admintools** and then, by default, sends **\\** to the navigation bar. If you specify a different folder on the OldExplorer command line, it will navigate there instead.
 
 The goal of this project is to improve on similar PowerShell based solutions with a faster launch, no console window, easy change of the starting folder, use the Explorer icon, and not interfere with an existing open Control Panel window.
+
+**Note**: If you would like to make the Windows 10 Explorer the default file manager in Windows 11, you can do that using one of the Explorer patching programs that are available. For example, you can install [StartAllBack](https://www.startallback.com/) and select the "Kinda 10" mode.
 
 ## Why run the Windows 10 Explorer on Windows 11?
 
