@@ -42,7 +42,16 @@ namespace OldExplorer
             for (int i = 1; i < 10; i++)
             {
                 Thread.Sleep(200);
-                explorerPid = GetLatestMatchingExplorerPid(targetCommandLine);
+                Process[] processes = Process.GetProcessesByName("explorer");
+                foreach (Process process in processes)
+                {
+                    string commandLine = GetCommandLine(process.Id);
+                    if (commandLine.Equals(targetCommandLine, StringComparison.OrdinalIgnoreCase))
+                    {
+                        explorerPid = (uint)process.Id;
+                        break;
+                    }
+                }
                 if (explorerPid != 0) { break; }
             }
 
@@ -59,8 +68,8 @@ namespace OldExplorer
 
             if (mainWindowHandle == IntPtr.Zero) { return; }
 
+            Thread.Sleep(200);
             SetForegroundWindow(mainWindowHandle);
-
             Thread.Sleep(200);
 
             if (Clip && (Folder.Length > 3))
@@ -74,48 +83,17 @@ namespace OldExplorer
             }
         }
 
-        static uint GetLatestMatchingExplorerPid(string targetCommandLine)
+        static string GetCommandLine(int processId)
         {
-            Process[] explorerProcesses = Process.GetProcessesByName("explorer");
-
-            Process latestExplorerProcess = null;
-            DateTime latestStartTime = DateTime.MinValue;
-
-            foreach (Process explorerProcess in explorerProcesses)
+            using (ManagementObjectSearcher mos = new ManagementObjectSearcher($"SELECT CommandLine FROM Win32_Process WHERE ProcessId = {processId}"))
+            using (ManagementObjectCollection moc = mos.Get())
             {
-                if (IsMatchingCommandLine(explorerProcess, targetCommandLine))
+                foreach (ManagementBaseObject mo in moc)
                 {
-                    if (explorerProcess.StartTime > latestStartTime)
-                    {
-                        latestStartTime = explorerProcess.StartTime;
-                        latestExplorerProcess = explorerProcess;
-                    }
+                    return mo["CommandLine"]?.ToString();
                 }
             }
-
-            return latestExplorerProcess != null ? (uint)latestExplorerProcess.Id : 0;
-        }
-
-        static bool IsMatchingCommandLine(Process process, string targetCommandLine)
-        {
-            string processCommandLine = GetCommandLine(process);
-            return processCommandLine != null && processCommandLine.Equals(targetCommandLine, StringComparison.OrdinalIgnoreCase);
-        }
-
-        static string GetCommandLine(Process process)
-        {
-            try
-            {
-                using (ManagementObjectSearcher mos = new ManagementObjectSearcher("SELECT CommandLine FROM Win32_Process WHERE ProcessId = " + process.Id))
-                using (ManagementObjectCollection moc = mos.Get())
-                {
-                    return moc.OfType<ManagementObject>().FirstOrDefault()?["CommandLine"]?.ToString();
-                }
-            }
-            catch
-            {
-                return null;
-            }
+            return null;
         }
 
         private static IntPtr GetMainWindowHandle(uint processId)
