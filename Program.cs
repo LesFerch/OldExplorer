@@ -1,91 +1,130 @@
 ﻿using System;
 using System.Diagnostics;
-using System.IO;
 using System.Runtime.InteropServices;
 using System.Threading;
-using System.Windows.Automation;
 using System.Windows.Forms;
-using Microsoft.Win32;
+using System.Linq;
+using System.Management;
 
-class Program
+namespace OldExplorer
 {
-    [STAThread]
-    static void Main(string[] args)
+    class Program
     {
-        int Attempts = 20;
-        string Folder = "C:";
-        bool Clip = true;
-
-        for (int i = 0; i < args.Length; i++)
+        [STAThread]
+        static void Main(string[] args)
         {
-            if (args[i].ToLower() == "/x") { Clip = false; }
-            else { Folder = args[i]; }
-        }
-        if (Folder.EndsWith("\""))
-        {
-            Folder = Folder.Remove(Folder.Length - 1) + "\\";
-        }
+            string Folder = "\\";
+            bool Clip = true;
 
-        ProcessStartInfo startInfo = new ProcessStartInfo
-        {
-            FileName = "control.exe",
-            Arguments = "admintools",
-            RedirectStandardOutput = false,
-            RedirectStandardError = false,
-            UseShellExecute = true,
-            CreateNoWindow = false
-        };
-
-        Process process = new Process
-        {
-            StartInfo = startInfo
-        };
-
-        process.Start();
-
-        AutomationElement FoundWindow = null;
-        string[] WinList = new[]
-        {
-            "Administrative Tools",
-            "Control Panel\\All Control Panel Items\\Administrative Tools",
-            "Windows Tools",
-            "Control Panel\\All Control Panel Items\\Windows Tools"
-        };
-
-        for (int i = 0; i < Attempts; i++)
-        {
-            for (int j = 0; j < WinList.Length; j++)
+            for (int i = 0; i < args.Length; i++)
             {
-                FoundWindow = FindWindowByName(WinList[j]);
+                if (args[i].ToLower() == "/x") { Clip = false; }
+                else { Folder = args[i]; }
+            }
+            Folder = Folder.Replace("\"", "\\");
 
-                if (FoundWindow != null)
+            ProcessStartInfo startInfo = new ProcessStartInfo
+            {
+                FileName = "control.exe",
+                Arguments = "admintools",
+                UseShellExecute = false,
+            };
+
+            Process controlProcess = new Process();
+            controlProcess.StartInfo = startInfo;
+            controlProcess.Start();
+
+            //This is the explorer.exe task's command line when spawned via control admintools:
+            string targetCommandLine = "C:\\WINDOWS\\explorer.exe /factory,{5BD95610-9434-43c2-886c-57852CC8A120} -Embedding";
+
+            uint explorerPid = 0;
+
+            for (int i = 1; i < 10; i++)
+            {
+                Thread.Sleep(200);
+                explorerPid = GetLatestMatchingExplorerPid(targetCommandLine);
+                if (explorerPid != 0) { break; }
+            }
+
+            if (explorerPid == 0) { return; }
+
+            IntPtr mainWindowHandle = IntPtr.Zero;
+
+            for (int i = 1; i < 10; i++)
+            {
+                Thread.Sleep(200);
+                mainWindowHandle = GetMainWindowHandle(explorerPid);
+                if (mainWindowHandle != IntPtr.Zero) { break; }
+            }
+
+            if (mainWindowHandle == IntPtr.Zero) { return; }
+
+            SetForegroundWindow(mainWindowHandle);
+
+            Thread.Sleep(200);
+
+            if (Clip && (Folder.Length > 3))
+            {
+                Clipboard.SetText(Folder);
+                SendKeys.SendWait("^{l}^{v}{Enter}");
+            }
+            else
+            {
+                SendKeys.SendWait("^{l}" + Folder + "{Enter}");
+            }
+        }
+
+        static uint GetLatestMatchingExplorerPid(string targetCommandLine)
+        {
+            Process[] explorerProcesses = Process.GetProcessesByName("explorer");
+
+            Process latestExplorerProcess = null;
+            DateTime latestStartTime = DateTime.MinValue;
+
+            foreach (Process explorerProcess in explorerProcesses)
+            {
+                if (IsMatchingCommandLine(explorerProcess, targetCommandLine))
                 {
-                    SetForegroundWindow((IntPtr)FoundWindow.Current.NativeWindowHandle);
-                    Thread.Sleep(200);
-                    if (Clip && (Folder.Length > 3))
+                    if (explorerProcess.StartTime > latestStartTime)
                     {
-                        Clipboard.SetText(Folder);
-                        SendKeys.SendWait("^{l}^{v}{Enter}");
+                        latestStartTime = explorerProcess.StartTime;
+                        latestExplorerProcess = explorerProcess;
                     }
-                    else
-                    {
-                        SendKeys.SendWait("^{l}" + Folder + "{Enter}");
-                    }
-                    break;
                 }
             }
-            if (FoundWindow != null) { break; }
-            Thread.Sleep(100);
-        }
-    }
-    private static AutomationElement FindWindowByName(string name)
-    {
-        return AutomationElement.RootElement.FindFirst(
-            TreeScope.Children,
-            new PropertyCondition(AutomationElement.NameProperty, name)
-        );
-    }
 
-    [DllImport("user32.dll")]
-    private static extern bool SetForegroundWindow(IntPtr hWnd);
+            return latestExplorerProcess != null ? (uint)latestExplorerProcess.Id : 0;
+        }
+
+        static bool IsMatchingCommandLine(Process process, string targetCommandLine)
+        {
+            string processCommandLine = GetCommandLine(process);
+            return processCommandLine != null && processCommandLine.Equals(targetCommandLine, StringComparison.OrdinalIgnoreCase);
+        }
+
+        static string GetCommandLine(Process process)
+        {
+            try
+            {
+                using (ManagementObjectSearcher mos = new ManagementObjectSearcher("SELECT CommandLine FROM Win32_Process WHERE ProcessId = " + process.Id))
+                using (ManagementObjectCollection moc = mos.Get())
+                {
+                    return moc.OfType<ManagementObject>().FirstOrDefault()?["CommandLine"]?.ToString();
+                }
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        private static IntPtr GetMainWindowHandle(uint processId)
+        {
+            Process process = Process.GetProcessById((int)processId);
+            return process.MainWindowHandle;
+        }
+
+        [DllImport("user32.dll")]
+        private static extern bool SetForegroundWindow(IntPtr hWnd);
+    }
 }
