@@ -3,8 +3,8 @@ using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Threading;
 using System.Windows.Forms;
-using System.Linq;
 using System.Management;
+using System.Text;
 
 namespace OldExplorer
 {
@@ -29,7 +29,6 @@ namespace OldExplorer
                 Arguments = "admintools",
                 UseShellExecute = false,
             };
-
             Process controlProcess = new Process();
             controlProcess.StartInfo = startInfo;
             controlProcess.Start();
@@ -39,9 +38,9 @@ namespace OldExplorer
 
             uint explorerPid = 0;
 
-            for (int i = 1; i < 10; i++)
+            for (int i = 1; i < 20; i++)
             {
-                Thread.Sleep(200);
+                Thread.Sleep(100);
                 Process[] processes = Process.GetProcessesByName("explorer");
                 foreach (Process process in processes)
                 {
@@ -59,9 +58,9 @@ namespace OldExplorer
 
             IntPtr mainWindowHandle = IntPtr.Zero;
 
-            for (int i = 1; i < 10; i++)
+            for (int i = 1; i < 20; i++)
             {
-                Thread.Sleep(200);
+                Thread.Sleep(100);
                 mainWindowHandle = GetMainWindowHandle(explorerPid);
                 if (mainWindowHandle != IntPtr.Zero) { break; }
             }
@@ -69,16 +68,38 @@ namespace OldExplorer
             if (mainWindowHandle == IntPtr.Zero) { return; }
 
             Thread.Sleep(200);
-            SetForegroundWindow(mainWindowHandle);
-            Thread.Sleep(200);
+
+            IntPtr currentHandle = mainWindowHandle;
+            string[] controlNames = { "WorkerW", "ReBarWindow32", "Address Band Root", "msctls_progress32", "Breadcrumb Parent", "ToolbarWindow32" };
+            foreach (string controlName in controlNames)
+            {
+                currentHandle = FindWindowEx(currentHandle, IntPtr.Zero, controlName, null);
+                if (currentHandle == IntPtr.Zero) { break; }
+            }
+
+            if (currentHandle == IntPtr.Zero) { return; }
+
+            for (int i = 1; i < 50; i++)
+            {
+                SetForegroundWindow(mainWindowHandle);
+                const int bufferLength = 256;
+                StringBuilder addressText = new StringBuilder(bufferLength);
+                GetWindowText(currentHandle, addressText, bufferLength);
+                if (addressText.ToString() != "") { break; }
+                Thread.Sleep(20);
+            }
+
+            Thread.Sleep(100);
 
             if (Clip && (Folder.Length > 3))
             {
                 Clipboard.SetText(Folder);
+                SetForegroundWindow(mainWindowHandle);
                 SendKeys.SendWait("^{l}^{v}{Enter}");
             }
             else
             {
+                SetForegroundWindow(mainWindowHandle);
                 SendKeys.SendWait("^{l}" + Folder + "{Enter}");
             }
         }
@@ -104,5 +125,11 @@ namespace OldExplorer
 
         [DllImport("user32.dll")]
         private static extern bool SetForegroundWindow(IntPtr hWnd);
+        
+        [DllImport("user32.dll")]
+        public static extern IntPtr FindWindowEx(IntPtr hwndParent, IntPtr hwndChildAfter, string lpszClass, string lpszWindow);
+
+        [DllImport("user32.dll", CharSet = CharSet.Auto)]
+        public static extern int GetWindowText(IntPtr hWnd, StringBuilder lpString, int nMaxCount);
     }
 }
