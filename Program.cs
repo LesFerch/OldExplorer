@@ -107,6 +107,10 @@ namespace OldExplorer
             else
             {
                 SetForegroundWindow(mainWindowHandle);
+                Folder = Folder.Replace("{", "|");
+                Folder = Folder.Replace("}", "*");
+                Folder = Folder.Replace("|", "{{}");
+                Folder = Folder.Replace("*", "{}}");
                 SendKeys.SendWait("^{l}" + Folder + "{Enter}");
             }
         }
