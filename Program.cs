@@ -41,15 +41,22 @@ namespace OldExplorer
             for (int i = 1; i < 20; i++)
             {
                 Thread.Sleep(100);
-                Process[] processes = Process.GetProcessesByName("explorer");
-                foreach (Process process in processes)
+                try
                 {
-                    string commandLine = GetCommandLine(process.Id);
-                    if (commandLine.Equals(targetCommandLine, StringComparison.OrdinalIgnoreCase))
+                    Process[] processes = Process.GetProcessesByName("explorer");
+                    foreach (Process process in processes)
                     {
-                        explorerPid = (uint)process.Id;
-                        break;
+                        string commandLine = GetCommandLine(process.Id);
+                        if (commandLine.Equals(targetCommandLine, StringComparison.OrdinalIgnoreCase))
+                        {
+                            explorerPid = (uint)process.Id;
+                            break;
+                        }
                     }
+                    if (explorerPid != 0) { break; }
+                }
+                catch
+                {
                 }
                 if (explorerPid != 0) { break; }
             }
