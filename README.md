@@ -16,7 +16,7 @@ For some, it's just a preferred interface, but for others there are specific fun
 
 Another reason is to get better performance, especially with folders that contain a lot of media files.
 
-# How to Download and Run
+## How to Download and Run
 
 1. Download the zip file using the link above.
 2. Extract **OldExplorer.exe**.
@@ -28,7 +28,7 @@ Another reason is to get better performance, especially with folders that contai
 
 **Note**: Some antivirus software may falsely detect the download as a virus. This can happen anytime you download a new executable and may require extra steps to whitelist the file.
 
-# Summary
+## Summary
 
 **OldExplorer** launches the Windows 10 Explorer on Windows 11 by executing the command **control admintools** and then sends the  starting folder (**\\** by default) to the navigation bar.
 
