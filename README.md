@@ -8,7 +8,7 @@ The Windows 10 Explorer can be accessed on Windows 11 by opening the Control Pan
 
 The goal of this project is to improve on similar PowerShell based solutions with a faster launch, no console window, easy change of the starting folder, use the Explorer icon, and not interfere with an existing open Control Panel window.
 
-**Note**: If you would like to make the Windows 10 Explorer the default file manager in Windows 11, you can do that using  [StartAllBack](https://www.startallback.com/) or [ExplorerPatcher](https://github.com/valinet/ExplorerPatcher) and selecting the appropriate Explorer interface option.
+**Note**: If you would like to make the Windows 10 Explorer the default file manager in Windows 11, you can do that using  [StartAllBack](https://www.startallback.com/), [ExplorerPatcher](https://github.com/valinet/ExplorerPatcher), or [WindHawk](https://windhawk.net/mods/explorer-frame-classic) and selecting the appropriate Explorer interface option.
 
 ## Why run the Windows 10 Explorer on Windows 11?
 
