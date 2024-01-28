@@ -8,11 +8,11 @@ The Windows 10 Explorer can be accessed on Windows 11 by opening the Control Pan
 
 The goal of this project is to improve on similar PowerShell based solutions with a faster launch, no console window, easy change of the starting folder, use the Explorer icon, and not interfere with an existing open Control Panel window.
 
-**Note**: If you would like to make the Windows 10 Explorer the default file manager in Windows 11, you can do that using  [StartAllBack](https://www.startallback.com/), [ExplorerPatcher](https://github.com/valinet/ExplorerPatcher), or [WindHawk](https://windhawk.net/mods/explorer-frame-classic) and selecting the appropriate Explorer interface option.
+**Note**: You can make the Windows 10 Explorer the default file manager in Windows 11 with [registry settings](https://www.elevenforum.com/t/restore-classic-file-explorer-with-ribbon-in-windows-11.620/#Three), or by installing one of [StartAllBack](https://www.startallback.com/), [ExplorerPatcher](https://github.com/valinet/ExplorerPatcher), or [WindHawk](https://windhawk.net/mods/explorer-frame-classic) and selecting the appropriate Explorer interface option. However, none of those options will give you the details pane that allows direct editing of metadata. Using the Control Panel method or the OldExplorer launcher will give you the old details pane.
 
 ## Why run the Windows 10 Explorer on Windows 11?
 
-For some, it's just a preferred interface, but for others there are specific functional reasons, such as using offline files and folders or being able to set the folder type for an entire folder tree.
+For some, it's just a preferred interface, but for others there are specific functional reasons, such as using offline files and folders or being able to set the folder type for an entire folder tree or getting access to the old details pane that allows direct editing of file metadata.
 
 Another reason is to get better performance, especially with folders that contain a lot of media files.
 
