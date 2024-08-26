@@ -42,7 +42,7 @@ Another reason is to get better performance, especially with folders that contai
 
 **Note**: By Default, OldExplorer includes two small pauses of 100 milliseconds and 200 milliseconds for the Explorer interface elements to load before attempting to enter the path in the navigation bar. You may fine-tune these pauses via the /a and /b command line arguments. The values are in milliseconds. For example, if you want to set both pauses to zero, you would include /a:0 and /b:0 (or /a=0 and /b=0) on the command line. Please note that smaller values will provide a quicker load at the risk of Explorer remaining in the Control Panel AdminTools screen. You will still see the AdminTools display briefly, even with the values set to 0.
 
-Example shortcut:
+**Example shortcut**:
 
 ![image](https://github.com/user-attachments/assets/79053340-6a6a-4e66-9196-4e2989772d87)
 
