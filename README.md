@@ -69,7 +69,7 @@ Launch the Windows 10 Explorer to **This PC** and do not use the clipboard:\
 `OldExplorer /x "This PC"`
 
 **Example 6**:\
-Launch the Windows 10 Explorer to **D:**\ as quickly as possible (warning: may remain at AdminTools screen):\ 
+Launch the Windows 10 Explorer to **D:**\ as quickly as possible (warning: may remain at AdminTools screen):\
 `OldExplorer /a:0 /b:0 D:`
 
 \
