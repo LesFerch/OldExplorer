@@ -46,7 +46,7 @@ Another reason is to get better performance, especially with folders that contai
 
 ![image](https://github.com/user-attachments/assets/79053340-6a6a-4e66-9196-4e2989772d87)
 
-**Note**: In the above example, the pause values are set to the defaults. You can also leave the /a and /b arguments out completely to get the defaults and you may change the values to lower numbers, at the risk of the Explorer sometimes window remaining at the AdminTools screen. Also note that the "Start in" folder makes no difference to OldExplorer.exe.
+**Note**: In the above example, the pause values are set to the defaults. You can also leave the /a and /b arguments out completely to get the defaults and you may change the values to lower numbers, at the risk of the Explorer window sometimes remaining at the AdminTools screen. Also note that the "Start in" folder makes no difference to OldExplorer.exe.
 
 **Example 1**:\
 Launch the Windows 10 Explorer to **C:\\**\
