@@ -15,10 +15,16 @@ namespace OldExplorer
         {
             string Folder = "\\";
             bool Clip = true;
+            int a = 100; int b = 200;
 
             for (int i = 0; i < args.Length; i++)
             {
                 if (args[i].ToLower() == "/x") { Clip = false; }
+                
+                else if (args[i].ToLower().StartsWith("/a")) { a = int.Parse(args[i].Split(new char[] { '=', ':' })[1]); }
+
+                else if (args[i].ToLower().StartsWith("/b")) { b = int.Parse(args[i].Split(new char[] { '=', ':' })[1]); }
+
                 else { Folder = args[i]; }
             }
             Folder = Folder.Replace("\"", "\\");
@@ -74,7 +80,7 @@ namespace OldExplorer
 
             if (mainWindowHandle == IntPtr.Zero) { return; }
 
-            Thread.Sleep(200);
+            Thread.Sleep(a);
 
             IntPtr currentHandle = mainWindowHandle;
             string[] controlNames = { "WorkerW", "ReBarWindow32", "Address Band Root", "msctls_progress32", "Breadcrumb Parent", "ToolbarWindow32" };
@@ -96,7 +102,7 @@ namespace OldExplorer
                 Thread.Sleep(20);
             }
 
-            Thread.Sleep(100);
+            Thread.Sleep(b);
 
             if (Clip && (Folder.Length > 3))
             {
