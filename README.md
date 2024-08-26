@@ -36,9 +36,17 @@ Another reason is to get better performance, especially with folders that contai
 
 ## Usage examples
 
-**Note**: Typically you would make a shortcut to OldExplorer.exe and then edit the command line of the shortcut, if you want to start in a folder other than **C:\\**
+**Note**: Typically you would make a shortcut to OldExplorer.exe and then edit the command line of the shortcut, if you want to start in a folder other than **C:\\** or want to change either of the options mentioned below.
 
 **Note**: By Default, OldExplorer uses the clipboard for any path specified on the command line that is greater than 3 characters in length. This allows the path to be entered into the address bar very fast at the expense of overwriting whatever is currently on the clipboard. You can tell OldExplorer to not use the clipboard by specifying /x on the command line.
+
+**Note**: By Default, OldExplorer includes two small pauses of 100 milliseconds and 200 milliseconds for the Explorer interface elements to load before attempting to enter the path in the navigation bar. You may fine-tune these pauses via the /a and /b command line arguments. The values are in milliseconds. For example, if you want to set both pauses to zero, you would include /a:0 and /b:0 (or /a=0 and /b=0) on the command line. Please note that smaller values will provide a quicker load at the risk of Explorer remaining in the Control Panel AdminTools screen. You will still see the AdminTools display briefly, even with the values set to 0.
+
+Example shortcut:
+
+![image](https://github.com/user-attachments/assets/79053340-6a6a-4e66-9196-4e2989772d87)
+
+**Note**: In the above example, the pause values are set to the defaults. You can also leave the /a and /b arguments out completely to get the defaults and you may change the values to lower numbers, at the risk of the Explorer sometimes window remaining at the AdminTools screen. Also note that the "Start in" folder makes no difference to OldExplorer.exe.
 
 **Example 1**:\
 Launch the Windows 10 Explorer to **C:\\**\
@@ -59,6 +67,10 @@ Launch the Windows 10 Explorer to **This PC**:\
 **Example 5**:\
 Launch the Windows 10 Explorer to **This PC** and do not use the clipboard:\
 `OldExplorer /x "This PC"`
+
+**Example 6**:\
+Launch the Windows 10 Explorer to **D:**\ as quickly as possible (warning: may remain at AdminTools screen):\ 
+`OldExplorer /a:0 /b:0 D:`
 
 \
 \
