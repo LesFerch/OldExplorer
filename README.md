@@ -1,6 +1,6 @@
 # OldExplorer
 
-[![image](https://github.com/LesFerch/WinSetView/assets/79026235/0188480f-ca53-45d5-b9ff-daafff32869e)Download the zip file](https://github.com/LesFerch/OldExplorer/releases/download/1.2.2/OldExplorer.zip)
+[![image](https://github.com/LesFerch/WinSetView/assets/79026235/0188480f-ca53-45d5-b9ff-daafff32869e)Download the zip file](https://github.com/LesFerch/OldExplorer/releases/download/1.3.0/OldExplorer.zip)
 
 ## Launch Windows 10 Explorer on Windows 11
 
