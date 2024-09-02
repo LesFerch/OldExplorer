@@ -44,6 +44,8 @@ namespace OldExplorer
                 Verb = "open"
             });
 
+            string publicPath = Environment.GetEnvironmentVariable("PUBLIC");
+
             ShellWindows shellWindows = new ShellWindows();
 
             bool windowFound = false;
@@ -53,7 +55,7 @@ namespace OldExplorer
                 Thread.Sleep(80);
                 foreach (InternetExplorer window in shellWindows)
                 {
-                    if (window.Name == "File Explorer" && window.LocationURL == "file:///C:/Users/Public")
+                    if (window.Name == "File Explorer" && window.LocationURL == $"file:///{publicPath}")
                     {
                         window.Navigate(Folder);
                         windowFound = true;
