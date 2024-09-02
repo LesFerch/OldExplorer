@@ -44,7 +44,7 @@ namespace OldExplorer
                 Verb = "open"
             });
 
-            string publicPath = Environment.GetEnvironmentVariable("PUBLIC");
+            string publicPath = Environment.GetEnvironmentVariable("PUBLIC").Replace("\\","/");
 
             ShellWindows shellWindows = new ShellWindows();
 
