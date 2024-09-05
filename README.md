@@ -1,6 +1,6 @@
 # OldExplorer
 
-[![image](https://github.com/LesFerch/WinSetView/assets/79026235/0188480f-ca53-45d5-b9ff-daafff32869e)Download the zip file](https://github.com/LesFerch/OldExplorer/releases/download/2.0.0/OldExplorer.zip)
+[![image](https://github.com/LesFerch/WinSetView/assets/79026235/0188480f-ca53-45d5-b9ff-daafff32869e)Download the zip file](https://github.com/LesFerch/OldExplorer/releases/download/2.1.0/OldExplorer.zip)
 
 ## Launch Windows 10 Explorer on Windows 11
 
@@ -10,7 +10,7 @@ This project improves on similar scripted solutions by providing a faster launch
 
 **Note**: You can make the Windows 10 Explorer the default file manager in Windows 11 with [SwitchExplorer](https://lesferch.github.io/SwitchExplorer/), but note that option will not provide the old details pane that allows direct editing of metadata. Use OldExplorer (i.e. this tool) when you need to get access to the old details pane.
 
-**Note**: OldExplorer.exe is only useful on Windows 11. It will run on Windows 10, but it's pointless to do that.
+**Note**: OldExplorer.exe is only useful on Windows 11. It will run on Windows 10, but it's pointless to do so.
 
 ## Why run the Windows 10 Explorer on Windows 11?
 
@@ -67,7 +67,22 @@ Launch the Windows 10 Explorer to **Frequent Folders**:\
 Launch the Windows 10 Explorer to **C:\Users\[UserName]\AppData\Local**:\
 `OldExplorer "%LocalAppData%"`
 
-**Other locations**
+### Command line options
+
+The following are optional command line arguments
+
+**/d+**\
+This will add a "DelegateExecute" registry setting that will change the default Explorer when you execute "explorer" or "explorer.exe" from a shortcut, command line, or Start > Run to instead run OldExplorer.exe. Please note that this option will not completely change the default Explorer. For example, running Explorer with a command line argument will still run Explorer instead of OldExplorer.
+
+You can use the tool [SwitchExplorer](https://lesferch.github.io/SwitchExplorer/) to catch the remaining scenarios where the Windows 11 Explorer would otherwise open.
+
+**/d-**\
+This removes the registry entry created by the **/d+** option.
+
+**/x**\
+This exits the app without opening Explorer. This is useful if you want to use the tool to apply the registry setting provided by the **/d+** option without opening an Explorer window.
+
+### Start folder location options
 
 The following shortcut keywords are supported (case does not matter):
 
