@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.Threading;
 using SHDocVw;
+using Microsoft.Win32;
 
 namespace OldExplorer
 {
@@ -10,14 +11,38 @@ namespace OldExplorer
         [STAThread]
         static void Main(string[] args)
         {
+            string myExe = System.Reflection.Assembly.GetExecutingAssembly().Location;
             string Folder = @"\";
+            string baseKey = @"Software\Classes\CLSID\{52205FD8-5DFB-447D-801A-D0B52F2E83E1}";
+            string cmdKey = $@"{baseKey}\shell\OpenNewWindow\command";
+            bool defAdd = false;
+            bool defDel = false;
+            bool exitApp = false;
 
             for (int i = 0; i < args.Length; i++)
             {
-                Folder = args[i];
+                string a = args[i].ToLower();
+                if (a == "/d+") { defAdd = true; }
+                else if (a == "/d-") { defDel = true; }
+                else if (a == "/x") { exitApp = true; }
+                else Folder = args[i];
             }
 
-            Folder = Folder.Replace("\"", "\\");
+            Folder = Folder.Replace("\"", "\\"); //Ensure trailing backslash is not escaped as quote
+
+            if (defDel)
+            {
+                Registry.CurrentUser.DeleteSubKeyTree(baseKey, throwOnMissingSubKey: false);
+            }
+
+            if (defAdd)
+            {
+                Registry.SetValue($@"HKEY_CURRENT_USER\{cmdKey}", "", $"\"{myExe}\" \"{Folder}\"");
+                Registry.SetValue($@"HKEY_CURRENT_USER\{cmdKey}", "DelegateExecute", "");
+            }
+
+            if (exitApp) { return; }
+
             string f = Folder.ToLower();
 
             if (f == "desktop") { Folder = "shell:desktop"; }
