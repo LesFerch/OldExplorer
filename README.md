@@ -36,7 +36,7 @@ Typically you would make a **shortcut** to `OldExplorer.exe` and then edit the c
 
 **Example shortcut**:
 
-![image](https://github.com/user-attachments/assets/cc4ed922-4c3d-4079-9837-a3dc1936c05f)
+![image](https://github.com/user-attachments/assets/c67b5bf6-bb52-4044-a89d-57f14db26719)
 
 
 **Example 1**:\
