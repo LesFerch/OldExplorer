@@ -64,7 +64,7 @@ Launch the Windows 10 Explorer to **Frequent Folders**:\
 `OldExplorer shell:::{3936E9E4-D92C-4EEE-A85A-BC16D5EA0819}`
 
 **Example 7**:\
-Launch the Windows 10 Explorer to **C:\Users\[UserName]\AppData\Local**:\
+Launch the Windows 10 Explorer to **C:\Users\\[UserName]\AppData\Local**:\
 `OldExplorer "%LocalAppData%"`
 
 ### Command line options
