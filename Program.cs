@@ -69,7 +69,7 @@ namespace OldExplorer
                 Verb = "open"
             });
 
-            string publicPath = Environment.GetEnvironmentVariable("PUBLIC").Replace("\\","/");
+            string publicPath = Environment.GetEnvironmentVariable("PUBLIC").Replace("\\", "/");
 
             ShellWindows shellWindows = new ShellWindows();
 
@@ -80,7 +80,7 @@ namespace OldExplorer
                 Thread.Sleep(80);
                 foreach (InternetExplorer window in shellWindows)
                 {
-                    if (window.Name == "File Explorer" && window.LocationURL == $"file:///{publicPath}")
+                    if (window.LocationURL == $"file:///{publicPath}")
                     {
                         window.Navigate(Folder);
                         windowFound = true;
