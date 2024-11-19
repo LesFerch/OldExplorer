@@ -74,6 +74,8 @@ The following are optional command line arguments
 **/d+**\
 This will add a "DelegateExecute" registry setting that will change the default Explorer when you execute "explorer" or "explorer.exe" from a shortcut, command line, or Start > Run to instead run OldExplorer.exe. Please note that this option will not completely change the default Explorer. For example, running Explorer with a command line argument will still run Explorer instead of OldExplorer.
 
+**Note**: Do not include /d+ in your shortcut(s). You only need to run OldExplorer.exe _once_ with the /d+ argument to add the DelegateExecute registry entry.
+
 You can use the tool [SwitchExplorer](https://lesferch.github.io/SwitchExplorer/) to catch the remaining scenarios where the Windows 11 Explorer would otherwise open.
 
 **/d-**\
