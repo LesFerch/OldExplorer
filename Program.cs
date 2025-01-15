@@ -58,7 +58,9 @@ namespace OldExplorer
             if (f == "public") { Folder = "shell:public"; }
             if (f == "recent") { Folder = "shell:recent"; }
             if (f == "recycle bin") { Folder = "shell:::{645FF040-5081-101B-9F08-00AA002F954E}"; }
+            if (f == "recyclebin") { Folder = "shell:::{645FF040-5081-101B-9F08-00AA002F954E}"; }
             if (f == "this pc") { Folder = "shell:::{20D04FE0-3AEA-1069-A2D8-08002B30309D}"; }
+            if (f == "thispc") { Folder = "shell:::{20D04FE0-3AEA-1069-A2D8-08002B30309D}"; }
             if (f == "userprofile") { Folder = "shell:::{59031A47-3F72-44A7-89C5-5595FE6B30EE}"; }
             if (f == "videos") { Folder = "shell:::{A0953C92-50DC-43BF-BE83-3742FED03C9C}"; }
 
