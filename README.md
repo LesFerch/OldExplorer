@@ -32,7 +32,7 @@ Another reason is to get better performance, especially with folders that contai
 
 ## Usage
 
-Typically you would make a **shortcut** to `OldExplorer.exe` and then edit the command line of the shortcut, if you want to start in a folder other than **C:\\**.
+Typically you would make a **shortcut** to `OldExplorer.exe` and then edit the command line of the shortcut, if you want to start in a folder other than Explorer's current start folder.
 
 **Example shortcut**:
 
@@ -40,7 +40,7 @@ Typically you would make a **shortcut** to `OldExplorer.exe` and then edit the c
 
 
 **Example 1**:\
-Launch the Windows 10 Explorer to **C:\\**\
+Launch the Windows 10 Explorer to Explorer's current "LaunchTo" value (i.e. the "Open File Explorer to" setting)\
 `OldExplorer`
 
 **Example 2**:\
