@@ -19,6 +19,32 @@ namespace OldExplorer
             bool defDel = false;
             bool exitApp = false;
 
+            if (args.Length == 0)
+            {
+                int LaunchTo = 0;
+                string AdvKey = @"HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced";
+                try { LaunchTo = (int)Registry.GetValue(AdvKey, "LaunchTo", 0); } catch { }
+
+                switch (LaunchTo)
+                {
+                    case 0:
+                        Folder = @"\";
+                        break;
+                    case 1:
+                        Folder = "This PC";
+                        break;
+                    case 2:
+                        Folder = "Home";
+                        break;
+                    case 3:
+                        Folder = "Downloads";
+                        break;
+                    case 4:
+                        Folder = "OneDrive";
+                        break;
+                }
+            }
+
             for (int i = 0; i < args.Length; i++)
             {
                 string a = args[i].ToLower();
@@ -50,11 +76,11 @@ namespace OldExplorer
             if (f == "downloads") { Folder = "shell:downloads"; }
             if (f == "favorites") { Folder = "shell:::{323CA680-C24D-4099-B94D-446DD2D7249E}"; }
             if (f == "frequent") { Folder = "shell:::{3936E9E4-D92C-4EEE-A85A-BC16D5EA0819}"; }
-            if (f == "home") { Folder = "shell:::{679f85cb-0220-4080-b29b-5540cc05aab6}"; }
+            if (f == "home") { Folder = "shell:::{679F85CB-0220-4080-B29B-5540CC05AAB6}"; }
             if (f == "libraries") { Folder = "shell:libraries"; }
             if (f == "music") { Folder = "shell:::{3DFDF296-DBEC-4FB4-81D1-6A3438BCF4DE}"; }
             if (f == "onedrive") { Folder = "shell:::{018D5C66-4533-4307-9B53-224DE2ED1FE6}"; }
-            if (f == "pictures") { Folder = "shell:::{24ad3ad4-a569-4530-98e1-ab02f9417aa8}"; }
+            if (f == "pictures") { Folder = "shell:::{24AD3AD4-A569-4530-98E1-AB02F9417AA8}"; }
             if (f == "public") { Folder = "shell:public"; }
             if (f == "recent") { Folder = "shell:recent"; }
             if (f == "recycle bin") { Folder = "shell:::{645FF040-5081-101B-9F08-00AA002F954E}"; }
