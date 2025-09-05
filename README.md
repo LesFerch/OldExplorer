@@ -76,6 +76,8 @@ This will add a "DelegateExecute" registry setting that will change the default 
 
 **Note**: Do not include /d+ in your shortcut(s). You only need to run OldExplorer.exe _once_ with the /d+ argument to add the DelegateExecute registry entry.
 
+**Note**: Starting with build 26100.4202, this option no longer works in Windows 11 for the default Explorer taskbar icon. It does continue to work when Explorer is launched via a command line or via a shortcut. The default Explorer taskbar icon can be replaced with a shortcut link, but then you will see a second Explorer taskbar icon whenever an Explorer window is open.
+
 You can use the tool [SwitchExplorer](https://lesferch.github.io/SwitchExplorer/) to catch the remaining scenarios where the Windows 11 Explorer would otherwise open.
 
 **/d-**\
@@ -117,3 +119,4 @@ You can also use any shell shortcuts, shell GUIDs, and environment variables tha
 \
 \
 [![image](https://github.com/LesFerch/WinSetView/assets/79026235/63b7acbc-36ef-4578-b96a-d0b7ea0cba3a)](https://github.com/LesFerch/OldExplorer)
+
